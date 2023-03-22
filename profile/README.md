@@ -8,4 +8,4 @@ CI is also based on [linuxserver/docker-jenkins-builder](https://github.com/linu
 
 I created this organisation mainly as an education project for myself, but if anyone else finds it useful, that's just a bonus. I'm always happy to consider requests for new images, so if you're after something specific, just open an issue [here](https://github.com/imagegenius/.github/issues).
 
-I can guarantee that I'll do my best to keep the images up-to-date and maintain them for as long as I'm using them in production. But let's be real, sometimes life gets in the way and I can't always be bothered. But I'll do my best, no worries.
+I can guarantee that I'll do my best to keep the images up-to-date and maintain them for as long as I'm using them in production. But let's be real, sometimes life gets in the way and I can't always be bothered. But I'll do my best.
