@@ -1,13 +1,11 @@
 ---
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Renovate
-
 on:
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch:
     inputs:
-      distinct_id:
       dryRun:
         description: Dry Run
         default: false
@@ -24,10 +22,8 @@ on:
         options:
           - debug
           - info
-
 permissions:
   contents: read
-
 jobs:
   renovate:
     name: Renovate
@@ -35,22 +31,23 @@ jobs:
     permissions:
       packages: read
     steps:
-      - name: echo distinct ID ${{ github.event.inputs.distinct_id }}
-        run: echo ${{ github.event.inputs.distinct_id }}
-            
       - name: Checkout
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
-
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - name: Generate Token
-        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         id: app-token
         with:
           app-id: ${{ secrets.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-
+          owner: ${{ github.repository_owner }} # zizmor: ignore[github-app] org-wide access is required for Renovate autodiscover
+          permission-contents: write
+          permission-issues: write
+          permission-pull-requests: write
+          permission-workflows: write
       - name: Renovate
-        uses: renovatebot/github-action@eaf12548c13069dcc28bb75c4ee4610cdbe400c5 # v44.2.6
+        uses: renovatebot/github-action@693b9ef15eec82123529a37c782242f091365961 # v46.1.14
         env:
           LOG_LEVEL: ${{ inputs.logLevel || 'debug' }}
           RENOVATE_DRY_RUN: ${{ inputs.dryRun == true }}
@@ -59,5 +56,6 @@ jobs:
           RENOVATE_INTERNAL_CHECKS_FILTER: strict
           RENOVATE_PLATFORM: github
           RENOVATE_PLATFORM_COMMIT: true
+          RENOVATE_CUSTOM_ENV_VARIABLES: '{"MISE_TRUSTED_CONFIG_PATHS":"/tmp/renovate/repos"}'
         with:
           token: ${{ steps.app-token.outputs.token }}
