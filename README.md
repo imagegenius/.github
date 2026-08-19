@@ -1,3 +1,3 @@
 # .github
 
-[Copied from hydazz/.github](https://github.com/hydazz/.github)
+[Copied from home-operations/.github](https://github.com/home-operations/.github)
