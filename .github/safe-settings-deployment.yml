@@ -1,0 +1,8 @@
+---
+restrictedRepos:
+  include:
+    - .github
+    - docker-esphome
+    - docker-immich
+    - docker-kopia
+    - docker-obico
