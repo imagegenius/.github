@@ -83,7 +83,7 @@ jobs:
           LOG_LEVEL: ${{ inputs.logLevel || 'debug' }}
           RENOVATE_DRY_RUN: ${{ inputs.dryRun == true }}
           RENOVATE_AUTODISCOVER: true
-          RENOVATE_AUTODISCOVER_FILTER: ${{ inputs.autodiscoverFilter && format('{0}/{1}', github.repository_owner, inputs.autodiscoverFilter) || '/^ImageGenius\/(\.github|docker-esphome|docker-immich|docker-kopia|docker-obico)$/' }}
+          RENOVATE_AUTODISCOVER_FILTER: ${{ github.repository_owner }}/${{ inputs.autodiscoverFilter || '*' }}
           RENOVATE_INTERNAL_CHECKS_FILTER: strict
           RENOVATE_PLATFORM: github
           RENOVATE_PLATFORM_COMMIT: true
