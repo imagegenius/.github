@@ -6,3 +6,4 @@ restrictedRepos:
     - docker-immich
     - docker-kopia
     - docker-obico
+    - renovate-config

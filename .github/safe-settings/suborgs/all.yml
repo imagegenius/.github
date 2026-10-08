@@ -5,6 +5,7 @@ suborgrepos:
   - docker-immich
   - docker-kopia
   - docker-obico
+  - renovate-config
 
 rulesets:
   - name: main
