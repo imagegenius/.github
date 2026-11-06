@@ -1,4 +1,4 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  extends: ["local>imagegenius/renovate-config"],
+  extends: ["local>imagegenius/.github:renovate-config"],
 }
